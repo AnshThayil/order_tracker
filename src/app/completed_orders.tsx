@@ -51,7 +51,7 @@ export default function CompletedOrders({newCompletedOrder, resetCompletedOrder}
                         </Thead>
                         <Tbody>
                         {orderData.map(({ roomNum, guestName, means, timeIn, timeOut, timerLen, serverName }) => (
-                            <Tr>
+                            <Tr key={roomNum+guestName+timeIn.toLocaleString()}>
                             <Td>{roomNum}</Td>
                             <Td>{guestName}</Td>
                             <Td>{means}</Td>

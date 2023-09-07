@@ -17,7 +17,7 @@ export default function AddNewOrderModal({isOpen, close, add}: AddNewOrderModalP
     const [serverName, setServerName] = useState('');
 
     const create = () => {
-        const new_order: OrderProps = {'timeIn': new Date(), 'roomNum': roomNum, 'guestName': guestName, 'timerLen': Number(timeLimit), 'means': means, 'serverName': serverName, 'remove': (key) => {}};
+        const new_order: OrderProps = {'timeIn': new Date(), 'roomNum': roomNum, 'guestName': guestName, 'timerLen': Number(timeLimit), 'means': means, 'serverName': serverName, 'remove': (key) => {}, 'complete': (newOrder) => {}};
         setRoomNum('');
         setGuestName('');
         setTimeLimit('15');
