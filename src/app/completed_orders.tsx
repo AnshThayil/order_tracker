@@ -27,8 +27,8 @@ export default function CompletedOrders({newCompletedOrder, resetCompletedOrder}
 
     const [showModal, setShowModal] = useState(false);
     return (
-        <Grid width={'90%'} templateColumns={"1fr"}>
-            <GridItem colSpan={1}>
+        <Grid width={'90%'} templateColumns={"1fr"} margin='15px'>
+            <GridItem colSpan={1} marginBottom={'15px'}>
                 <Grid templateColumns="1fr">
                     <GridItem colSpan={1}>
                         <Heading>Completed Orders</Heading>
