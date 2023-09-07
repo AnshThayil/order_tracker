@@ -32,14 +32,17 @@ function useInterval(callback: any, delay: number) {
 
 export type OrderProps = {
     timeIn: Date,
+    timeOut?: Date,
     timerLen: number,
     guestName: string,
     roomNum: string,
     means: string,
     serverName: string,
-    remove: (key: string) => void
-}
-export default function Order({timeIn, timerLen, guestName, roomNum, means, serverName, remove}: OrderProps) {
+    remove: (key: string) => void,
+    complete: (newCompletedOrder: OrderProps) => void,
+    completed?: boolean
+};
+export default function Order({timeIn, timerLen, guestName, roomNum, means, serverName, remove, complete}: OrderProps) {
 
     const color = {
         'red': '#eb6060',
@@ -66,9 +69,12 @@ export default function Order({timeIn, timerLen, guestName, roomNum, means, serv
     const handlePause = () => {
         setPaused((prev) => !prev);
     }
-    const handleStop = () => {
+    const handleComplete = () => {
         stop();
-        remove(roomNum+guestName)
+        remove(roomNum+guestName+timeIn.toLocaleString());
+        complete({timeIn: timeIn, timeOut: new Date(), timerLen: timerLen, guestName: guestName, roomNum: roomNum, serverName: serverName, means: means, remove: remove, complete: complete, completed: true})
+
+
     }
 
     return (
@@ -86,7 +92,7 @@ export default function Order({timeIn, timerLen, guestName, roomNum, means, serv
                     <Heading size='sm'>Guest Name: {guestName}</Heading>
                 </Center>
                 <Center>
-                    <Text >Time in: {String(timeIn.getHours()).padStart(2, '0')}:{String(timeIn.getMinutes()).padStart(2, '0')}</Text>
+                    <Text >Time in: {timeIn.toLocaleTimeString()}</Text>
                 </Center>
                 <Center>
                     <Text>Expected Time: {String(Math.floor(timerLen / 60)).padStart(2, '0')}:{String(timerLen % 60).padStart(2, '0')}</Text>
@@ -104,7 +110,7 @@ export default function Order({timeIn, timerLen, guestName, roomNum, means, serv
                 </Center>
                 <Box justifyContent='center' width='100%' display='flex'>
                     <ButtonGroup>
-                        <Button onClick={handleStop}>Complete </Button>
+                        <Button onClick={handleComplete}>Complete</Button>
                         <Button onClick={handlePause}>Pause</Button>
                     </ButtonGroup>
                 </Box>
