@@ -1,3 +1,6 @@
+An Order Tracking application to provide a visual representation of how much time has elapsed since an order has been placed. Developed by Ansh Thayil for Nikhil Neel.
+
+This application is currently under development.
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
